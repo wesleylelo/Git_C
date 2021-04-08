@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 
-void distribuicao( char a, char b, char c, FILE* arquivos[]){
+void distribuicao( unsigned char a, unsigned char b, unsigned char c, FILE* arquivos[]){
 	int conta = 1, contb = 1, contc = 1;
+	
 while(!(a == EOF && b == EOF && c == EOF)){	
+printf("%d %d %d", a, b, c);
 	if(a <= b && a <= c && conta == 1 && contb == 1 && contc == 1){
 			fputc(a, arquivos[3]);
 			a = fgetc(arquivos[0]);
@@ -114,6 +116,7 @@ while(!(a == EOF && b == EOF && c == EOF)){
 			}
 	 	}
 	 	if(a == ' ' && b == ' ' && c == ' '){
+	 		printf("AAAAAAAAAAAAAAA");
 	 		a = fgetc(arquivos[0]);
 	 		b = fgetc(arquivos[1]);
 	 		c = fgetc(arquivos[2]);
@@ -122,7 +125,7 @@ while(!(a == EOF && b == EOF && c == EOF)){
 	 		contc = 1;
 		 }
 		
-		 
+		 printf("%d %d %d", a, b, c);
 		 if(a == EOF && b == EOF){
 		 	c = EOF;
 		 } else if(c == EOF && b == EOF){
