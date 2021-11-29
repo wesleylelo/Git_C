@@ -15,31 +15,41 @@ while(num > 0)
 	if(expoente != NULL)
 		*expoente = i - 1;
 	int j, l = 0;
-	if(expoente != NULL){
-	for(j = i - 2; j >= 0; j--){
+	if(expoente == NULL){
+		j = i - 1;
+	} else{
+		j = i - 2;
+	}
+	for(j = j; j >= 0; j--){
 		vector_binario_verdadeiro[l] = vector_binario[j];
 		l++;
 	}
-	}
+	
 	return vector_binario_verdadeiro;
 	    
 
 }
-int *fracionariotobinario(double num,int precisao){
+int *fracionariotobinario(double num,int precisao, int* get){
 
-	int* vector_binario = malloc(sizeof(int) * precisao);
+	int* vector_binario;
+	vector_binario = malloc(sizeof(int) * precisao);
 	zerar_vector(vector_binario, precisao);
 	int i = 0;
-
-	while (num != 0.0) {
+	double controller = num ;
+	
+	while (precisao > 0) {
         	num *= 2;
+        	
         	int resto = (int)num;
+        	printf("%d", resto);
         	num -= resto;
 		vector_binario[i] = resto;
 		i++;
+		
+		precisao--;
 	}
-	
 	return vector_binario;
+	
 }
 
 
@@ -49,18 +59,21 @@ void zerar_vector(int* vector, int precisao){
 		vector[i] = 2;
 	}
 }
-int* mantissa(int* vector_inteiro, int* vector_fracionado, int precisao ){
+int* mantissa(int* vector_inteiro, int* vector_fracionado, int precisao){
 	int* vector_binario = malloc(sizeof(int) * precisao);
 	zerar_vector(vector_binario, precisao);
 int i, j = 0;
+
 for(i = 0; vector_inteiro[i]!= 2; i++){
 	vector_binario[j] = vector_inteiro[i];
-	printf("%d", vector_inteiro[i]);
+	
 	j++;
 }
-for(i = 0; (i < sizeof(vector_fracionado)/sizeof(vector_fracionado[0])); i++){
+for(i = 0; (i < precisao); i++){
 	vector_binario[j] = vector_fracionado[i];
 	j++;
 }
+
+
 return vector_binario;
 }
